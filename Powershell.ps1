@@ -3,7 +3,7 @@ Set-StrictMode -Version Latest
 
 $repoLogsOutput="C:\dockercredscan\"
 $toolPath ="C:\dockercredscan\tools\CredentialScanner.exe"        
-$dir = "C:\dockercredscan\.kitchen.yml"       
+$dir = "C:\dockercredscan"       
 $searcher="C:\dockercredscan\tools\Searchers\buildsearchers.xml"              
 Write-Output "$toolPath $dir $repoLogsOutput"
 & $toolPath -I "$dir" -S $searcher -O "$repoLogsOutput" -f csv -cp
