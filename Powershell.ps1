@@ -12,7 +12,12 @@
     {
         Install-Module -Name AzureRm -AllowClobber -Force -Verbose
     }
-    $rg=Get-AzureRmResourceGroup -Name $RgName -Location $RgLocation -ErrorAction SilentlyContinue
+   $username="jayasimha.lti@outlook.com"
+   $password = "Jayasimha@123"
+   $Securepassword = ConvertTo-SecureString $password -AsPlainText -Force
+   $UserCredential = New-Object System.Management.Automation.PSCredential($username, $Securepassword)
+   Add-AzureRmAccount -TenantId "b2b40b89-7a87-4677-b3ca-d7b0c9793025" -Subscription "c8eca5c2-73bc-4586-9696-92ab31115ace" -Credential $UserCredential -Force
+   $rg=Get-AzureRmResourceGroup -Name $RgName -Location $RgLocation -ErrorAction SilentlyContinue
     if(!$rg)
     {
         New-AzureRmResourceGroup -Name $RgName -Location $RgLocation
