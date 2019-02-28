@@ -29,7 +29,7 @@
         New-AzureRmStorageContainer -Name $ContainerName -ResourceGroupName $RgName -StorageAccountName $storeageaccount.StorageAccountName -PublicAccess Blob
     }
 $count=1
-$connectionString = “Server=$ServerName;uid=$UserName; pwd=$Password;Database=$DbName;Integrated Security=False;”
+$connectionString = "Server=$ServerName;uid=$UserName; pwd=$Password;Database=$DbName;Integrated Security=False;"
 $connection = new-object system.data.SqlClient.SQLConnection($connectionString)
 do
 {
