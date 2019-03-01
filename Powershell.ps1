@@ -26,26 +26,32 @@
 	    return
 	} 
     $login
+    Write-output "login completed"
         #Set-AzureRmContext cmdlet to set authentication information for cmdlets that we run in this PS session.
          Set-AzureRmContext -SubscriptionName $Subscription
    $rg=Get-AzureRmResourceGroup -Name $RgName -Location $RgLocation -ErrorAction SilentlyContinue
     if(!$rg)
     {
+        write-output "Resource Group Created"
         New-AzureRmResourceGroup -Name $RgName -Location $RgLocation
     }
     $storeageaccount=Get-AzureRmStorageAccount -ResourceGroupName $RgName -Name $storageaccountName -ErrorAction SilentlyContinue
     if(!$storeageaccount)
     {
+    	Write-output "Storage account created"
         $storeageaccount=New-AzureRmStorageAccount -ResourceGroupName $RgName  -Name $storageaccountName -Location $RgLocation -SkuName Standard_LRS -Kind BlobStorage -AccessTier Cool
         New-AzureRmStorageContainer -Name $ContainerName -ResourceGroupName $RgName -StorageAccountName $storeageaccount.StorageAccountName -PublicAccess Blob
+	Write-output "Container created"
     }
 $count=1
 $connectionString = "Server=$ServerName;uid=$UserName; pwd=$Password;Database=$DbName;Integrated Security=False;"
 $connection = new-object system.data.SqlClient.SQLConnection($connectionString)
+Write-output "credential formed"
 do
 {
     try
     {
+    	Write-output "entered into while block"
         $query = “select top 1 * from SQLCredscan where IsAccessed = 0 and IsProcessed= 0”
         $command = new-object system.data.sqlclient.sqlcommand($query,$connection)
         $connection.Open()
