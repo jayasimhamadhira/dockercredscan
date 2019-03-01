@@ -8,8 +8,8 @@
     $storageaccountName="credscanrepo"
     $ContainerName="credscan-container"
     $Armexist=Get-Module -Name AzureRM.* -ListAvailable
-    $cred = Get-Credential
-    Register-AzureADConnectHealthADFSAgent -Credential $cred
+    #$cred = Get-Credential
+    #Register-AzureADConnectHealthADFSAgent -Credential $cred
     if(!($Armexist.Count -gt 0))
     {
         Install-Module -Name AzureRm -AllowClobber -Force -Verbose
