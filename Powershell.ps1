@@ -52,7 +52,7 @@ do
     try
     {
     	Write-output "entered into while block"
-        $query = “select top 1 * from SQLCredscan where IsAccessed = 0 and IsProcessed= 0”
+        $query = "select top 1 * from SQLCredscan where IsAccessed = 0 and IsProcessed= 0"
         $command = new-object system.data.sqlclient.sqlcommand($query,$connection)
         $connection.Open()
         $adapter = New-Object System.Data.sqlclient.sqlDataAdapter $command
@@ -72,7 +72,7 @@ do
         $connection = New-Object System.Data.SqlClient.SqlConnection
         $connection.ConnectionString = $connectionString
         $connection.Open()
-        $query = “update SQLCredscan set IsAccessed=1 where RepoName='$RepoName' ”
+        $query = "update SQLCredscan set IsAccessed=1 where RepoName='$RepoName' "
         $command = $connection.CreateCommand()
         $command.CommandText = $query
         $result = $command.ExecuteReader()
@@ -81,7 +81,7 @@ do
         $connection = New-Object System.Data.SqlClient.SqlConnection
         $connection.ConnectionString = $connectionString
         $connection.Open()
-        $query = “update SQLCredscan set IsProcessed=1 where RepoName='$RepoName' ”
+        $query = "update SQLCredscan set IsProcessed=1 where RepoName='$RepoName'"
         $command = $connection.CreateCommand()
         $command.CommandText = $query
         $result = $command.ExecuteReader()
