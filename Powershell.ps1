@@ -8,18 +8,26 @@
     $storageaccountName="credscanrepo"
     $ContainerName="credscan-container"
     $Armexist=Get-Module -Name AzureRM.* -ListAvailable
-    #$cred = Get-Credential
-    #Register-AzureADConnectHealthADFSAgent -Credential $cred
     if(!($Armexist.Count -gt 0))
     {
         Install-Module -Name AzureRm -AllowClobber -Force -Verbose
     }
-   #$username="jayasimha.lti@outlook.com"
-   #$password = "Jayasimha@123"
-   #$Securepassword = ConvertTo-SecureString $password -AsPlainText -Force
-   #$UserCredential = New-Object System.Management.Automation.PSCredential($username, $Securepassword)
-   #Add-AzureRmAccount -TenantId "b2b40b89-7a87-4677-b3ca-d7b0c9793025" -Subscription "c8eca5c2-73bc-4586-9696-92ab31115ace" -Credential $UserCredential -Force
-   Connect-AzureRmAccount
+    $EU="svcenvdv@microsoft.com"
+    $EP="P@sw0rd!13"
+    $Subscription="c1bd9039-9169-41b6-9b75-6eef04aaf8a4"
+    $AzureSubscriptionTenantId="72f988bf-86f1-41af-91ab-2d7cd011db47"
+    $azureAccountName = $EU
+    $azurePassword = ConvertTo-SecureString $EP -AsPlainText -Force
+    $psCred = New-Object System.Management.Automation.PSCredential($azureAccountName, $azurePassword)
+    Start-Sleep -Seconds 2
+    $login = Add-AzureRmAccount -SubscriptionName $Subscription -TenantId $AzureSubscriptionTenantId -Credential $psCred 
+    if (!$login)
+    { 
+	    return
+	} 
+    $login
+        #Set-AzureRmContext cmdlet to set authentication information for cmdlets that we run in this PS session.
+         Set-AzureRmContext -SubscriptionName $Subscription
    $rg=Get-AzureRmResourceGroup -Name $RgName -Location $RgLocation -ErrorAction SilentlyContinue
     if(!$rg)
     {
