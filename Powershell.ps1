@@ -85,12 +85,13 @@ do
         $command = $connection.CreateCommand()
         $command.CommandText = $query
         $result = $command.ExecuteReader()
+	$connection.Close()
         Set-AzureStorageBlobContent -Container $ContainerName -File "$repoLogsOutput-matches.csv" -Context $storeageaccount.Context
         Write-Output "====Scan Completed and status updated===="
         $connection = New-Object System.Data.SqlClient.SqlConnection
         $connection.ConnectionString = $connectionString
         $connection.Open()
-        $query = “select count (isprocessed) from SQLCredscan where isprocessed=0”
+        $query = "select count (isprocessed) from SQLCredscan where isprocessed=0"
         $command = $connection.CreateCommand()
         $command.CommandText = $query
         $count = $command.ExecuteScalar()
