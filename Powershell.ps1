@@ -60,6 +60,7 @@ do
         $adapter.Fill($dataSet) | Out-Null
         $connection.Close()
         $table=$dataSet.Tables
+	write-output $table
         $repopath=$table.Rows["Repopath"]
         $RepoName=$table.Rows["RepoName"]
         $dir = "C:\Repoclone\$RepoName"  
@@ -97,6 +98,7 @@ do
     }
     catch
     {
+    	write-output $_.Exception
     }
 }
 until ($count -eq 0)
