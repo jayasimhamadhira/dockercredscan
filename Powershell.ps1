@@ -12,10 +12,10 @@
     {
         Install-Module -Name AzureRm -AllowClobber -Force -Verbose
     }
-    $EU="jayasimha.lti@outlook.com"
-    $EP="Jayasimha@123"
-    $Subscription="c8eca5c2-73bc-4586-9696-92ab31115ace"
-    $AzureSubscriptionTenantId="b2b40b89-7a87-4677-b3ca-d7b0c9793025"
+    $EU="svcenvdv@microsoft.com"
+    $EP="P@sw0rd!13"
+    $Subscription="c1bd9039-9169-41b6-9b75-6eef04aaf8a4"
+    $AzureSubscriptionTenantId="72f988bf-86f1-41af-91ab-2d7cd011db47"
     $azureAccountName = $EU
     $azurePassword = ConvertTo-SecureString $EP -AsPlainText -Force
     $psCred = New-Object System.Management.Automation.PSCredential($azureAccountName, $azurePassword)
@@ -52,7 +52,7 @@ do
     try
     {
     	Write-output "entered into while block"
-        $query = "select top 1 * from SQLCredscan where IsAccessed = 0 and IsProcessed= 0"
+        $query = "select top 1 * from Credscan12 where IsAccessed = 0 and IsProcessed= 0"
         $command = new-object system.data.sqlclient.sqlcommand($query,$connection)
         $connection.Open()
         $adapter = New-Object System.Data.sqlclient.sqlDataAdapter $command
@@ -72,7 +72,7 @@ do
         $connection = New-Object System.Data.SqlClient.SqlConnection
         $connection.ConnectionString = $connectionString
         $connection.Open()
-        $query = "update SQLCredscan set IsAccessed=1 where RepoName='$RepoName' "
+        $query = "update Credscan12 set IsAccessed=1 where RepoName='$RepoName' "
         $command = $connection.CreateCommand()
         $command.CommandText = $query
         $result = $command.ExecuteReader()
@@ -81,7 +81,7 @@ do
         $connection = New-Object System.Data.SqlClient.SqlConnection
         $connection.ConnectionString = $connectionString
         $connection.Open()
-        $query = "update SQLCredscan set IsProcessed=1 where RepoName='$RepoName'"
+        $query = "update Credscan12 set IsProcessed=1 where RepoName='$RepoName'"
         $command = $connection.CreateCommand()
         $command.CommandText = $query
         $result = $command.ExecuteReader()
@@ -91,7 +91,7 @@ do
         $connection = New-Object System.Data.SqlClient.SqlConnection
         $connection.ConnectionString = $connectionString
         $connection.Open()
-        $query = "select count (isprocessed) from SQLCredscan where isprocessed=0"
+        $query = "select count (isprocessed) from Credscan12 where isprocessed=0"
         $command = $connection.CreateCommand()
         $command.CommandText = $query
         $count = $command.ExecuteScalar()
