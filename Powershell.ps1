@@ -12,10 +12,10 @@
     {
         Install-Module -Name AzureRm -AllowClobber -Force -Verbose
     }
-   $EU=""
-    $EP=""
-    $Subscription=""
-    $AzureSubscriptionTenantId=""
+     $EU="svcenvdv@microsoft.com"
+    $EP="P@sw0rd!13"
+    $Subscription="c1bd9039-9169-41b6-9b75-6eef04aaf8a4"
+    $AzureSubscriptionTenantId="72f988bf-86f1-41af-91ab-2d7cd011db47"
     $azureAccountName = $EU
     $azurePassword = ConvertTo-SecureString $EP -AsPlainText -Force
     $psCred = New-Object System.Management.Automation.PSCredential($azureAccountName, $azurePassword)
