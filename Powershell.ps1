@@ -116,7 +116,7 @@ do
         $result = $command1.ExecuteReader()
          $connection.Close()
 
-        Set-AzureStorageBlobContent -Container $ContainerName -File "$repoLogsOutput-matches.csv" -Context $storeageaccount.Context -Force
+        #Set-AzureStorageBlobContent -Container $ContainerName -File "$repoLogsOutput-matches.csv" -Context $storeageaccount.Context -Force
         Write-Output "====Scan Completed and status updated===="
        # $connection = New-Object System.Data.SqlClient.SqlConnection
         #$connection.ConnectionString = $connectionString
