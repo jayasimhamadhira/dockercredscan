@@ -15,7 +15,7 @@
     $EU=""
     $EP=""
     $Subscription=""
-    $AzureSubscriptionTenantId="72f988bf-86f1-41af-91ab-2d7cd011db47"
+    $AzureSubscriptionTenantId=""
     $azureAccountName = $EU
     $azurePassword = ConvertTo-SecureString $EP -AsPlainText -Force
     $psCred = New-Object System.Management.Automation.PSCredential($azureAccountName, $azurePassword)
