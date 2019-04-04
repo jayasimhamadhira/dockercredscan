@@ -141,7 +141,7 @@ Write-output "credential formed"
     }
 
    
-      # Set-AzureStorageBlobContent -Container $ContainerName -File "C:\TFVCRepopathCSV\$RepoName1-matches.csv" -Context $storeageaccount.Context -Force
+      #Set-AzureStorageBlobContent -Container $ContainerName -File "C:\TFVCRepopathCSV\$RepoName1-matches.csv" -Context $storeageaccount.Context -Force
         Write-Output "====Scan Completed and status updated===="
    
 
